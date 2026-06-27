@@ -1,20 +1,22 @@
-# Python Virtual Environment
+﻿# Python & Django Framework
+__pycache__/
+*.py[cod]
+*.class
 venv/
 .venv/
-__pycache__/
-*.pyc
-
-# Node.js Dependencies
-node_modules/
-frontend/node_modules/
-dist/
-frontend/dist/
-
-# Databases & local configurations
 *.sqlite3
 .env
 
-# IDE / System files
+# Node.js & Vite Frontend (Mapped to your /frontend folder)
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.env
+frontend/.env.*
+npm-debug.log*
+
+# IDE & OS Specific
 .vscode/
 .DS_Store
 Thumbs.db
