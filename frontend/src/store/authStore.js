@@ -1,26 +1,34 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-const useAuthStore = create((set) => ({
-  // Initial State: No user is logged in
-  user: null,
-  accessToken: null,
-  isAuthenticated: false,
-
-  // Action: Triggered after a successful API login request
-  login: (userData, token) =>
-    set({
-      user: userData,
-      accessToken: token,
-      isAuthenticated: true,
-    }),
-
-  // Action: Clears system memory on logout
-  logout: () =>
-    set({
+const useAuthStore = create(
+  persist(
+    (set) => ({
+      // Initial State
       user: null,
       accessToken: null,
       isAuthenticated: false,
+
+      // Actions
+      login: (userData, token) =>
+        set({
+          user: userData,
+          accessToken: token,
+          isAuthenticated: true,
+        }),
+
+      logout: () =>
+        set({
+          user: null,
+          accessToken: null,
+          isAuthenticated: false,
+        }),
     }),
-}));
+    {
+      // The unique name for this data inside the browser's Local Storage
+      name: "colab-auth-storage",
+    },
+  ),
+);
 
 export default useAuthStore;
