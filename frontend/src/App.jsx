@@ -3,6 +3,7 @@ import Landing from "./pages/Landing";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import WorkspaceEditor from "./pages/WorkspaceEditor";
 
 function App() {
   return (
@@ -15,8 +16,11 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
-        {/* Protected Area */}
+        {/* Workspace Routes */}
         <Route path="/workspace" element={<Dashboard />} />
+
+        {/* The :slug is a variable that React Router will capture */}
+        <Route path="/workspace/:slug" element={<WorkspaceEditor />} />
       </Routes>
     </BrowserRouter>
   );
