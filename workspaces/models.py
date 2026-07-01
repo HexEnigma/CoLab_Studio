@@ -8,6 +8,13 @@ class Workspace(models.Model):
     """
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True, help_text="URL-friendly name")
+    
+    # NEW FIELD: This will store the raw text from the Monaco Editor
+    schema_code = models.TextField(
+        default="Table User {\n  id int [pk]\n  name varchar\n}", 
+        blank=True
+    )
+    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

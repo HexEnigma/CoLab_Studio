@@ -17,3 +17,19 @@ class WorkspaceListCreateView(generics.ListCreateAPIView):
         # Data isolation: A user can NEVER see a workspace they don't belong to.
         # This filters the database where the user matches the 'members' list.
         return Workspace.objects.filter(members=self.request.user).distinct()
+
+
+class WorkspaceDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    GET: Fetches a single workspace's data (including the schema_code).
+    PUT/PATCH: Updates the schema_code when the user types in the editor.
+    """
+    serializer_class = WorkspaceSerializer
+    permission_classes = [IsAuthenticated]
+    
+    # This tells Django to look for the 'slug' in the URL instead of the ID
+    lookup_field = 'slug'
+
+    def get_queryset(self):
+        # Security: Ensure they can only fetch/edit workspaces they belong to
+        return Workspace.objects.filter(members=self.request.user)

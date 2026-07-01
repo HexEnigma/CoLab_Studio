@@ -6,8 +6,8 @@ import uuid
 class WorkspaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Workspace
-        fields = ['id', 'name', 'slug', 'created_at', 'updated_at']
-        # The frontend only sends the 'name'. We generate everything else automatically.
+        # Added 'schema_code' to the fields list
+        fields = ['id', 'name', 'slug', 'schema_code', 'created_at', 'updated_at']
         read_only_fields = ['id', 'slug', 'created_at', 'updated_at']
 
     def create(self, validated_data):

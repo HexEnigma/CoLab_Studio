@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from workspaces.views import WorkspaceListCreateView, WorkspaceDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -17,4 +18,5 @@ urlpatterns = [
     
     # Workspace Endpoints
     path('api/v1/workspaces/', WorkspaceListCreateView.as_view(), name='workspace-list-create'),
+    path('api/v1/workspaces/<slug:slug>/', WorkspaceDetailView.as_view(), name='workspace-detail'),
 ]
